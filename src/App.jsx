@@ -1,15 +1,23 @@
+import "./App.css";
+import { uid } from "uid";
+import { useState } from "react";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/Color/ColorForm";
-import "./App.css";
 
 function App() {
+  const [colorCard, setColorCard] = useState(initialColors);
+
+  const handleAddColor = (newColor) => {
+    setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
+  };
+
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm />
+      <ColorForm onAddColor={handleAddColor} />
 
-      {initialColors.map((color) => {
+      {colorCard.map((color) => {
         return <Color key={color.id} color={color} />;
       })}
     </>
