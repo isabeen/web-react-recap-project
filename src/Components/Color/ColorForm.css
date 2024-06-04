@@ -1,0 +1,11 @@
+.color-form {
+  margin: 0px 10px;
+}
+
+.button {
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  border: 1px solid #555;
+}
