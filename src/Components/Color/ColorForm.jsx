@@ -1,5 +1,5 @@
-import ColorInput from "./ColorInput";
 import "./ColorForm.css";
+import ColorInput from "./ColorInput";
 
 export default function ColorForm({
   initialColor = {

@@ -1,9 +1,9 @@
-import { initialColors } from "./lib/colors";
-import Color from "./Components/Color/Color";
-import ColorForm from "./Components/Color/ColorForm";
 import "./App.css";
 import { uid } from "uid";
 import { useState } from "react";
+import { initialColors } from "./lib/colors";
+import Color from "./Components/Color/Color";
+import ColorForm from "./Components/Color/ColorForm";
 
 function App() {
   const [colorCard, setColorCard] = useState(initialColors);
