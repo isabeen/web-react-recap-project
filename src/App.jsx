@@ -12,14 +12,25 @@ function App() {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
   };
 
+  const handleDeleteColor = (cardToDelete) => {
+    const updatedCards = colorCard.filter(
+      (color) => color.id !== cardToDelete.id
+    );
+    setColorCard(updatedCards);
+  };
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
 
-      {colorCard.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      {colorCard.length === 0 ? (
+        <p>No colors.. start by adding one!</p>
+      ) : (
+        colorCard.map((color) => (
+          <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+        ))
+      )}
     </>
   );
 }
