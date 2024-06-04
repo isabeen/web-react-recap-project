@@ -23,26 +23,37 @@ export default function ColorForm() {
         />
       </label>
       <br />
-      <label>
-        Hex
+      <div className="color-picker-container">
+        <label>
+          Hex
+          <br />
+          <input
+            type="text"
+            value={hex}
+            onChange={(e) => setHex(e.target.value)}
+          />
+          <input
+            type="color"
+            value={hex}
+            onChange={(e) => setHex(e.target.value)}
+          />
+        </label>
         <br />
-        <input
-          type="text"
-          value={hex}
-          onChange={(e) => setHex(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Contrast Text
-        <br />
-        <input
-          type="text"
-          value={contrast}
-          onChange={(e) => setContrast(e.target.value)}
-        />
-      </label>
-      <br />
+        <label>
+          Contrast Text
+          <br />
+          <input
+            type="text"
+            value={contrast}
+            onChange={(e) => setContrast(e.target.value)}
+          />
+          <input
+            type="color"
+            value={contrast}
+            onChange={(e) => setContrast(e.target.value)}
+          />
+        </label>
+      </div>
       <input type="submit" value="ADD COLOR" className="input-button" />
     </form>
   );
