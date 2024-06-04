@@ -2,10 +2,20 @@
   margin: 0px 10px;
 }
 
-.button {
+.input-button {
   margin-bottom: 10px;
 }
 
 input[type="text"] {
   border: 1px solid #555;
+}
+
+input[type="color"] {
+  border: 1px solid #555;
+  display: inline-block;
+  position: absolute;
+  width: 65px;
+  height: 28px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
