@@ -1,67 +1,51 @@
+import ColorInput from "./ColorInput";
 import "./ColorForm.css";
-import { useState } from "react";
 
-export default function ColorForm() {
-  const [role, setRole] = useState("some color");
-  const [hex, setHex] = useState("#FFFFFF");
-  const [contrast, setContrast] = useState("#000000");
-
-  const handleSubmit = (event) => {
+export default function ColorForm({
+  initialColor = {
+    role: "primary dark",
+    hex: "#95B3D0",
+    contrastText: "#ffffff",
+  },
+  onAddColor,
+}) {
+  function handleSubmit(event) {
     event.preventDefault();
-    alert(`The color you entered was: ${role}`);
-  };
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    onAddColor(data);
+  }
 
   return (
     <form onSubmit={handleSubmit} className="color-form">
-      <label>
+      <label htmlFor="role">
         Role
         <br />
         <input
           type="text"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
+          id="role"
+          name="role"
+          defaultValue={initialColor.role}
         />
       </label>
       <br />
-      <div className="color-picker-container">
-        <label>
-          Hex
-          <br />
-          <input
-            type="text"
-            value={hex}
-            onChange={(e) => setHex(e.target.value)}
-          />
-          <input
-            type="color"
-            value={hex}
-            onChange={(e) => setHex(e.target.value)}
-          />
-        </label>
+      <label htmlFor="hex">
+        Hex
         <br />
-        <label>
-          Contrast Text
-          <br />
-          <input
-            type="text"
-            value={contrast}
-            onChange={(e) => setContrast(e.target.value)}
-          />
-          <input
-            type="color"
-            value={contrast}
-            onChange={(e) => setContrast(e.target.value)}
-          />
-        </label>
-      </div>
+        <ColorInput type="text" id="hex" defaultValue={initialColor.hex} />
+      </label>
+      <br />
+      <label htmlFor="contrastText">
+        Contrast Text
+        <br />
+        <ColorInput
+          type="text"
+          id="contrastText"
+          defaultValue={initialColor.contrastText}
+        />
+      </label>
+      <br />
       <input type="submit" value="ADD COLOR" className="input-button" />
     </form>
   );
 }
-
-// <div className="color-form">
-//   <p>Role</p>
-//   <p>Hex</p>
-//   <p>Contrast Text</p>
-//   <button>ADD COLOR</button>
-// </div>
