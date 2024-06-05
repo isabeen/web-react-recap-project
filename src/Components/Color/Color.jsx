@@ -2,7 +2,7 @@ import "./Color.css";
 import { useState } from "react";
 import ColorForm from "./ColorForm";
 
-export default function Color({ color, onDelete }) {
+export default function Color({ color, onDelete, onUpdate }) {
   const [deleteColor, setDeleteColor] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(true);
   const [editClicked, setEditClicked] = useState(false);
@@ -59,7 +59,15 @@ export default function Color({ color, onDelete }) {
         )}
         {editClicked ? (
           <div>
-            <ColorForm initialColor={color} onAddColor={color.id} />
+            <ColorForm
+              initialColor={color}
+              onAddColor={onUpdate}
+              buttonText={"UPDATE COLOR"}
+              editClicked={editClicked}
+              onEditColor={onUpdate}
+              setEditClicked={setEditClicked}
+              setDeleteVisible={setDeleteVisible}
+            />
             <button onClick={handleCancelEdit}>CANCEL</button>
           </div>
         ) : null}

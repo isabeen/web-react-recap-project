@@ -12,6 +12,15 @@ function App() {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
   };
 
+  const handleUpdateColor = (colorToUpdate) => {
+    setColorCard(
+      colorCard.map((color) => {
+        if (color.id == colorToUpdate.id) return colorToUpdate;
+        return color;
+      })
+    );
+  };
+
   const handleDeleteColor = (cardToDeleteId) => {
     const updatedCards = colorCard.filter(
       (color) => color.id !== cardToDeleteId
@@ -22,13 +31,18 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm onAddColor={handleAddColor} buttonText={"ADD COLOR"} />
 
       {colorCard.length === 0 ? (
         <p>No colors.. start by adding one!</p>
       ) : (
         colorCard.map((color) => (
-          <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+          <Color
+            key={color.id}
+            color={color}
+            onDelete={handleDeleteColor}
+            onUpdate={handleUpdateColor}
+          />
         ))
       )}
     </>

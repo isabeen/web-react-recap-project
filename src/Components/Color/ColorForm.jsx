@@ -8,12 +8,24 @@ export default function ColorForm({
     contrastText: "#ffffff",
   },
   onAddColor,
+  buttonText,
+  editClicked,
+  setEditClicked,
+  setDeleteVisible,
+  onEditColor,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onAddColor(data);
+    const newColor = { ...data, id: initialColor.id };
+    if (editClicked) {
+      onEditColor(newColor);
+      setEditClicked(false);
+      setDeleteVisible(true);
+    } else {
+      onAddColor(newColor);
+    }
   }
 
   return (
@@ -45,7 +57,7 @@ export default function ColorForm({
         />
       </label>
       <br />
-      <input type="submit" value="ADD COLOR" className="input-button" />
+      <input type="submit" value={buttonText} className="input-button" />
     </form>
   );
 }
