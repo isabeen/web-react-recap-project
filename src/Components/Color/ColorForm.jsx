@@ -11,7 +11,6 @@ export default function ColorForm({
   buttonText,
   editClicked,
   setEditClicked,
-  setDeleteVisible,
   onEditColor,
 }) {
   function handleSubmit(event) {
@@ -22,9 +21,8 @@ export default function ColorForm({
     if (editClicked) {
       onEditColor(newColor);
       setEditClicked(false);
-      setDeleteVisible(true);
     } else {
-      onAddColor(newColor);
+      onAddColor(data);
     }
   }
 
