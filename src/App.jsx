@@ -12,9 +12,9 @@ function App() {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
   };
 
-  const handleDeleteColor = (cardToDelete) => {
+  const handleDeleteColor = (cardToDeleteId) => {
     const updatedCards = colorCard.filter(
-      (color) => color.id !== cardToDelete.id
+      (color) => color.id !== cardToDeleteId
     );
     setColorCard(updatedCards);
   };

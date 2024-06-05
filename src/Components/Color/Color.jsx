@@ -1,9 +1,11 @@
 import "./Color.css";
 import { useState } from "react";
+import ColorForm from "./ColorForm";
 
 export default function Color({ color, onDelete }) {
   const [deleteColor, setDeleteColor] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(true);
+  const [editClicked, setEditClicked] = useState(false);
 
   const handleDeleteClick = () => {
     setDeleteVisible(false);
@@ -11,11 +13,22 @@ export default function Color({ color, onDelete }) {
   };
 
   const handleConfirmDelete = () => {
-    onDelete(color);
+    onDelete(color.id);
   };
 
   const handleCancelClick = () => {
     return setDeleteVisible(true);
+  };
+
+  const handleEditClick = () => {
+    setDeleteVisible(false);
+    setDeleteColor(false);
+    setEditClicked(true);
+  };
+
+  const handleCancelEdit = () => {
+    setDeleteVisible(true);
+    setEditClicked(false);
   };
 
   return (
@@ -31,7 +44,10 @@ export default function Color({ color, onDelete }) {
       <p>contrast: {color.contrastText}</p>
       <div>
         {isDeleteVisible ? (
-          <button onClick={handleDeleteClick}>DELETE</button>
+          <>
+            <button onClick={handleDeleteClick}>DELETE</button>
+            <button onClick={handleEditClick}>EDIT</button>
+          </>
         ) : (
           deleteColor && (
             <div>
@@ -41,6 +57,12 @@ export default function Color({ color, onDelete }) {
             </div>
           )
         )}
+        {editClicked ? (
+          <div>
+            <ColorForm initialColor={color} onAddColor={color.id} />
+            <button onClick={handleCancelEdit}>CANCEL</button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
