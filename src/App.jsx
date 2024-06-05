@@ -1,12 +1,14 @@
 import "./App.css";
 import { uid } from "uid";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/Color/ColorForm";
 
 function App() {
-  const [colorCard, setColorCard] = useState(initialColors);
+  const [colorCard, setColorCard] = useLocalStorageState("colorCard", {
+    defaultValue: initialColors,
+  });
 
   const handleAddColor = (newColor) => {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
