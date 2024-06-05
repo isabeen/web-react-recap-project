@@ -1,16 +1,9 @@
 import "./Color.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Color({ color, onDelete }) {
   const [deleteColor, setDeleteColor] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(true);
-
-  useEffect(() => {
-    if (confirmDelete) {
-      onDelete(color.id);
-    }
-  }, [confirmDelete, onDelete, color.id]);
 
   const handleDeleteClick = () => {
     setDeleteVisible(false);
@@ -19,7 +12,6 @@ export default function Color({ color, onDelete }) {
 
   const handleConfirmDelete = () => {
     onDelete(color);
-    return setConfirmDelete(true);
   };
 
   const handleCancelClick = () => {
