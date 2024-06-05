@@ -1,29 +1,29 @@
 import "./Color.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import ColorForm from "./ColorForm";
 
-export default function Color({ color, onDelete }) {
+export default function Color({ color, onDelete, onUpdate }) {
   const [deleteColor, setDeleteColor] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [isDeleteVisible, setDeleteVisible] = useState(true);
-
-  useEffect(() => {
-    if (confirmDelete) {
-      onDelete(color.id);
-    }
-  }, [confirmDelete, onDelete, color.id]);
+  const [editClicked, setEditClicked] = useState(false);
 
   const handleDeleteClick = () => {
-    setDeleteVisible(false);
-    return setDeleteColor(true);
+    setDeleteColor(true);
   };
 
   const handleConfirmDelete = () => {
-    onDelete(color);
-    return setConfirmDelete(true);
+    onDelete(color.id);
   };
 
   const handleCancelClick = () => {
-    return setDeleteVisible(true);
+    setDeleteColor(false);
+  };
+
+  const handleEditClick = () => {
+    setEditClicked(true);
+  };
+
+  const handleCancelEdit = () => {
+    setEditClicked(false);
   };
 
   return (
@@ -37,19 +37,34 @@ export default function Color({ color, onDelete }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      <div>
-        {isDeleteVisible ? (
-          <button onClick={handleDeleteClick}>DELETE</button>
-        ) : (
-          deleteColor && (
+      {editClicked ? (
+        <>
+          <ColorForm
+            initialColor={color}
+            onAddColor={onUpdate}
+            buttonText={"UPDATE COLOR"}
+            editClicked={editClicked}
+            onEditColor={onUpdate}
+            setEditClicked={setEditClicked}
+          />
+          <button onClick={handleCancelEdit}>CANCEL</button>
+        </>
+      ) : (
+        <>
+          {deleteColor ? (
             <div>
-              <p className="color-card-headline">Really delete?</p>
+              <p className="color-card-headline">Really Delete?</p>
               <button onClick={handleCancelClick}>CANCEL</button>
               <button onClick={handleConfirmDelete}>DELETE</button>
             </div>
-          )
-        )}
-      </div>
+          ) : (
+            <>
+              <button onClick={handleDeleteClick}>DELETE</button>
+              <button onClick={handleEditClick}>EDIT</button>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }
