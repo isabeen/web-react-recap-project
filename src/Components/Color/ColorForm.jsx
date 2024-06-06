@@ -5,7 +5,7 @@ export default function ColorForm({
   initialColor = {
     role: "primary dark",
     hex: "#95B3D0",
-    contrastText: "#ffffff",
+    contrastText: "#000000",
   },
   onAddColor,
   buttonText,
