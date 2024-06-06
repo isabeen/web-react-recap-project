@@ -14,6 +14,10 @@ function App() {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
   };
 
+  const handleCopyColor = (hexValue) => {
+    navigator.clipboard.writeText(hexValue);
+  };
+
   const handleUpdateColor = (colorToUpdate) => {
     setColorCard(
       colorCard.map((color) => {
@@ -44,6 +48,7 @@ function App() {
             color={color}
             onDelete={handleDeleteColor}
             onUpdate={handleUpdateColor}
+            onCopy={handleCopyColor}
           />
         ))
       )}
