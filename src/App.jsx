@@ -4,11 +4,17 @@ import useLocalStorageState from "use-local-storage-state";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/Color/ColorForm";
+import Theme from "./Components/Theme";
 
 function App() {
   const [colorCard, setColorCard] = useLocalStorageState("colorCard", {
     defaultValue: initialColors,
   });
+
+  const [selectedOption, setSelectedOption] = useLocalStorageState(
+    "selectedOption",
+    { defaultValue: "" }
+  );
 
   const handleAddColor = (newColor) => {
     setColorCard([{ id: uid(), ...newColor }, ...colorCard]);
@@ -34,9 +40,19 @@ function App() {
     setColorCard(updatedCards);
   };
 
+  const handleSelect = (option) => {
+    console.log(selectedOption);
+    setSelectedOption(option);
+    console.log("Selected option:", option);
+  };
+
   return (
     <>
       <h1>Theme Creator</h1>
+      <Theme
+        options={["Option 1", "Option 2", "Option 3"]}
+        onSelect={handleSelect}
+      />
       <ColorForm onAddColor={handleAddColor} buttonText={"ADD COLOR"} />
 
       {colorCard.length === 0 ? (

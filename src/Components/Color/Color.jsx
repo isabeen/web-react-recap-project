@@ -60,7 +60,6 @@ export default function Color({ color, onDelete, onUpdate, onCopy }) {
       </button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      <br />
       <ContrastChecker hex={color.hex} contrastText={color.contrastText} />
       <br />
       {editClicked ? (

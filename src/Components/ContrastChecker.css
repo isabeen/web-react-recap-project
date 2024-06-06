@@ -8,7 +8,7 @@
   background-color: rgb(235, 12, 12);
 }
 
-p {
+#score {
   display: inline-block;
   color: black;
   margin-bottom: 5px;

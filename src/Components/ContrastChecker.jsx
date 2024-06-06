@@ -37,6 +37,8 @@ export default function ContrastChecker({ hex, contrastText }) {
   };
 
   return (
-    <p className={textHighlight()}>Overall Contrast Score: {contrastData}</p>
+    <p className={textHighlight()} id="score">
+      Overall Contrast Score: {contrastData}
+    </p>
   );
 }
