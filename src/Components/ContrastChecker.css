@@ -1,0 +1,15 @@
+.background-yup {
+  background-color: rgb(12, 170, 67);
+}
+.background-kinda {
+  background-color: rgb(219, 119, 19);
+}
+.background-nope {
+  background-color: rgb(235, 12, 12);
+}
+
+p {
+  display: inline-block;
+  color: black;
+  margin-bottom: 5px;
+}
