@@ -1,6 +1,7 @@
 import "./Color.css";
 import { useState, useEffect } from "react";
 import ColorForm from "./ColorForm";
+import ContrastChecker from "../ContrastChecker";
 
 export default function Color({ color, onDelete, onUpdate, onCopy }) {
   const [deleteColor, setDeleteColor] = useState(false);
@@ -43,7 +44,6 @@ export default function Color({ color, onDelete, onUpdate, onCopy }) {
     setCopyClicked(true);
     setStartTimer(true);
     onCopy(color.hex);
-    console.log("Copying text!");
   };
 
   return (
@@ -60,6 +60,9 @@ export default function Color({ color, onDelete, onUpdate, onCopy }) {
       </button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      <br />
+      <ContrastChecker hex={color.hex} contrastText={color.contrastText} />
+      <br />
       {editClicked ? (
         <>
           <ColorForm
